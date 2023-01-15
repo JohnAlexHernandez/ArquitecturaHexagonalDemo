@@ -1,16 +1,20 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
-import { AppComponent } from './app.component';
+import { albumComponent } from './components/album/album.component';
+import { AlbumOperations } from './infraestructure/album.operations';
+import { AlbumRepository } from './domain/model/album.repository';
 
 @NgModule({
   declarations: [
-    AppComponent
+    albumComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [{provide: AlbumRepository,  useClass: AlbumOperations}],
+  bootstrap: [albumComponent]
 })
 export class AppModule { }
